@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>مباركة فوزية وخالد</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: "Tahoma", sans-serif;
+      background: #1a1a1a;
+      color: white;
+      text-align: center;
+      overflow-x: hidden;
+    }
+
+    .hero {
+      position: relative;
+      height: 100vh;
+      background: url('https://thumbs.dreamstime.com/z/anneaux-de-mariage-sur-un-bouquet-des-roses-46441923.jpg?ct=jpeg') center/cover no-repeat;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: gold;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.5);
+    }
+
+    .hero h1 {
+      position: relative;
+      font-size: 48px;
+      z-index: 1;
+      animation: glow 2.5s infinite ease-in-out;
+      text-shadow: 0 0 10px #fff, 0 0 20px gold;
+    }
+
+    @keyframes glow {
+      0%, 100% { text-shadow: 0 0 10px #fff, 0 0 20px gold; }
+      50% { text-shadow: 0 0 20px #fff, 0 0 40px gold; }
+    }
+
+    .subtitle {
+      position: relative;
+      z-index: 1;
+      font-size: 20px;
+      margin-top: 15px;
+    }
+
+    .btn-play {
+      font-weight: 700;
+      padding: 12px 20px;
+      border-radius: 50px;
+      margin-top: 20px;
+      cursor: pointer;
+      position: relative;
+      z-index: 1;
+    }
+
+    .petals, .confetti {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 0;
+    }
+
+    .petal {
+      position: absolute;
+      width: 18px;
+      height: 18px;
+      background: radial-gradient(circle at 30% 30%, #ffd6d6, #ff6b81);
+      border-radius: 50%;
+      opacity: 0.95;
+      transform: translateY(-10vh);
+      animation: fall linear forwards;
+    }
+
+    @keyframes fall { to { transform: translateY(110vh) rotate(360deg); opacity:0.95; } }
+
+    .content {
+      padding: 40px 20px;
+      max-width: 700px;
+      margin: auto;
+    }
+
+    .card {
+      background: #111;
+      border: 1px solid #444;
+      border-radius: 16px;
+      padding: 25px;
+      margin-bottom: 20px;
+      box-shadow: 0 0 25px rgba(255, 215, 0, 0.2);
+    }
+
+    .signature {
+      margin-top: 20px;
+      font-size: 20px;
+      color: gold;
+      font-weight: bold;
+    }
+
+    .footer {
+      padding: 15px;
+      font-size: 14px;
+      color: #aaa;
+      margin-top: 30px;
+    }
+  </style>
+</head>
+<body>
+
+  <section class="hero">
+    <div class="petals"></div>
+    <div class="confetti"></div>
+    <h1>مبروك لفوزية و خالد</h1>
+    <p class="subtitle">تهنئة خاصة من عائلة بنواحي — الله يكمل عليكم بالخير والسعادة!</p>
+
+  </section>
+
+  <section class="content">
+    <div class="card">
+      <p style="font-size: 22px; line-height: 1.8;">
+        نتمنى لكم حياة زوجية عامرة بالحب والبركة، وديوركم عامرة بالنور والفرح.
+      </p>
+      <p class="signature">— من عند عائلة بنواحي ❤️</p>
+    </div>
+  </section>
+
+  <div class="footer">© 2025 — موقع المباركة الخاص</div>
+
+  <audio id="bgAudio" loop preload="none">
+    <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_8f3b3a4f7f.mp3?filename=romantic-violin-111132.mp3" type="audio/mpeg">
+  </audio>
+
+  <script>
+    const audio = document.getElementById('bgAudio');
+    const btn = document.getElementById('playBtn');
+    btn.addEventListener('click',()=>{
+      if(audio.paused){audio.play(); btn.textContent='⏸ إيقاف الموسيقى';}
+      else{audio.pause(); btn.textContent='▶ تشغيل الموسيقى';}
+    });
+
+    function createPetals(count=20){
+      const container = document.querySelector('.petals');
+      for(let i=0;i<count;i++){
+        const el=document.createElement('div');
+        el.className='petal';
+        el.style.left=Math.random()*100+'vw';
+        el.style.animationDuration=(5+Math.random()*5)+'s';
+        container.appendChild(el);
+        setTimeout(()=>el.remove(),10000);
+      }
+    }
+    setInterval(()=>createPetals(12),4000);
+    createPetals(12);
+  </script>
+</body>
+</html>
